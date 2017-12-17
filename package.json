@@ -4,7 +4,8 @@
   "description": "",
   "main": "albert.js",
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "puppeteer": "^0.13.0"
   },
   "devDependencies": {},
   "scripts": {

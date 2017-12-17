@@ -18,8 +18,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/albert.js"
+      "name": "Alberteer",
+      "program": "${workspaceFolder}/alberteer.js"
     }
   ]
 }
