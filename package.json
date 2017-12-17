@@ -1,0 +1,15 @@
+{
+  "name": "albert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "albert.js",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "phantomjs albert.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

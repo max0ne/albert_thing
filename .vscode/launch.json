@@ -1,0 +1,25 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "phantomjs",
+      "type": "phantomjs",
+      "request": "launch",
+      "file": "${file}",
+      "webRoot": "${workspaceRoot}",
+      "runtimeExecutable": "${workspaceRoot}/phantomjs",
+      "runtimeArgs": [],
+      "scriptArgs": [],
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/albert.js"
+    }
+  ]
+}
