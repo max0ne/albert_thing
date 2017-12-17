@@ -2,14 +2,13 @@
 
 ### run it
 ```
-npm i phantomjs -g
-
-npm main.js
+npm i
+npm start
 ```
 
 ### Roadmap
 
-1. core - cli tool
+1. core - cli tool almost ✅, need add cli arguments
 ```
 $ albert search --school 'tandon grad' --subject 'computer science'
 ```
@@ -23,5 +22,3 @@ would print name / info of all classes
   3. push notification me if found class i'm looking for
 
 all stuff should be serverless to be deployed to aws lambda
-
-Also [@CupNoodleFork](https://github.com/CupNoodleFork) suggest change to something like this [GoogleChrome/puppeteer](https://github.com/GoogleChrome/puppeteer)

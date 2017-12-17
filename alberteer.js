@@ -1,3 +1,4 @@
+#!/usr/local/bin/node
 const puppeteer = require('puppeteer');
 
 const sleep = (time) => new Promise((res) => setTimeout(res, time));

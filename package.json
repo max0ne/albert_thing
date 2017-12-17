@@ -1,6 +1,6 @@
 {
   "name": "albert",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "albert.js",
   "dependencies": {
@@ -9,8 +9,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "phantomjs albert.js"
+    "start": "node alberteer.js"
   },
-  "author": "",
+  "author": "Mingfei Huang",
   "license": "ISC"
 }
