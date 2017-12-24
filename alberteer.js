@@ -1,86 +1,70 @@
-#!/usr/local/bin/node
-const puppeteer = require('puppeteer');
+const { browser, page, openBrowser, goto, click, button, closeBrowser, $ } = require('taiko');
 
-const sleep = (time) => new Promise((res) => setTimeout(res, time));
+/**
+ * browser code
+ */
+function grabClasses() {
+  const classes = {};
+  const searchResults = $('#search-results').children().toArray();
+  let currentClass;
+  searchResults.forEach((ele) => {
+    if ($(ele).hasClass('class-title-header')) {
+      currentClass = $(ele).text();
+      classes[currentClass] = [];
+      return;
+    }
 
-
-(async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
-  // page.on('console', msg => console.log('PAGE LOG:', msg));
-  page.on('error', console.error.bind(null, 'PAGE ERROR >'));
-  page.on('pageerror', console.error.bind(null, 'pageerror >'));
-
-  await page.goto('https://m.albert.nyu.edu/app/catalog/classSearch');
-  console.log('page loaded');
-  await page.screenshot({ path: 'example.png' });
-  console.log('page shotted');
-
-  await page.evaluate(() => {
-    console.log('evaluating');
-
-    const school = 'Tandon - Grad';
-    const subject = 'Computer Science';
-
-    // select term
-    // <option value="1184" data-href="https://m.albert.nyu.edu/app/catalog/classSearch/1184">Spring 2018</option>
-    $('#term option[value="1184"]');
-
-    // open select school, this select use bootstrap dropdown
-    // $('[data-id="search-acad-group"]').click();
-    $('.btn :contains("Select School")').click();
-
-    // select dropdown with school
-    $(`span:contains("${school}")`).click();
-
-    // open subject
-    $('.btn :contains("Select Subject")').click();
-
-    // select subject
-    $(`span:contains("${subject}")`).click();
-
-    console.log('will search', $('.btn:contains("Search")'));
-  });
-
-  await page.screenshot({ path: 'will_search.png' });
-
-  await sleep(1000);
-
-  await page.screenshot({ path: 'will_search2.png' });
-
-  await page.evaluate(() => {
-    // search it!
-    $('.btn:contains("Search")').click();
-  });
-
-  // inject `getClasses` into page
-  await page.evaluate(() => {
-    window.getClasses = async () => {
-      console.log('getting classes');
-      // get classes
-      const classTitles = $('.class-title-header');
-      if (classTitles === null || classTitles === undefined || classTitles.length === 0) {
-        return undefined;
-      } else {
-        return classTitles.map(function () { return $.trim($(this).text()); }).get();
-      }
+    let section = $(ele).find('.section-content')[0];
+    if (section) {
+      const sectionObj = $(section).find('.section-body').toArray().reduce((acc, curr) => {
+        const [key, val] = $(curr).text().split(':');
+        if (key && val) {
+          acc[key.trim()] = val.trim();
+        }
+        return acc;
+      }, {});
+      sectionObj.raw = $(ele).text()
+        .split('\n')
+        .map((tt) => tt.trim())
+        .filter((tt) => tt.length > 0)
+        .join('\n');
+      sectionObj.href = $(ele).attr('href');
+      classes[currentClass].push(sectionObj);
     }
   });
+  return classes;
+}
 
-  let idx = 0;
-  while (idx < 100) {
-    await page.screenshot({ path: `get_class_${idx}.png` });
-    const classes = await page.evaluate(() => {
-      return window.getClasses();
-    });
-    if (classes === undefined) {
-      await sleep(1000);
-    } else {
-      console.log(classes.join('\n'));
-      break;
+/**
+ * @param {string} term `Spring 2018`
+ * @param {string} school `Tandon - Grad`
+ * @param {string} subject `Computer Science`
+ * @return {promise<any>}
+ */
+async function search(term, school, subject) {
+  try {
+    await openBrowser();
+    await goto('https://m.albert.nyu.edu/app/catalog/classSearch');
+    await click($('.btn[data-id="term"]'));
+    await click(term);
+    await click('Select School');
+    await click(school);
+    await click('Subject');
+    await click(subject);
+    await click(button('Search'));
+
+    return await page().evaluate(grabClasses);
+  } catch (e) {
+    throw e;
+  } finally {
+    if (browser()) {
+      closeBrowser();
     }
   }
+}
 
-  await browser.close();
-})();
+module.exports = { search };
+
+if (require && require.main == module) {
+  search('Spring 2018', 'Tandon - Grad', 'Computer Science').then(console.log).catch(console.error);
+}

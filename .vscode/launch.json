@@ -20,6 +20,12 @@
       "request": "launch",
       "name": "Alberteer",
       "program": "${workspaceFolder}/alberteer.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Albertaiko",
+      "program": "${workspaceFolder}/albertaiko.js"
     }
   ]
 }
