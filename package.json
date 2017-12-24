@@ -4,6 +4,7 @@
   "description": "",
   "main": "albert.js",
   "dependencies": {
+    "debug": "^3.1.0",
     "lodash": "^4.17.4",
     "puppeteer": "^0.13.0",
     "taiko": "0.0.9"
