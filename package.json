@@ -2,7 +2,7 @@
   "name": "albert",
   "version": "0.0.1",
   "description": "",
-  "main": "albert.js",
+  "main": "alberteer.js",
   "dependencies": {
     "debug": "^3.1.0",
     "lodash": "^4.17.4",
