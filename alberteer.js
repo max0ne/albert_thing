@@ -19,7 +19,7 @@ function grabClasses() {
       const sectionObj = $(section).find('.section-body').toArray().reduce((acc, curr) => {
         const [key, val] = $(curr).text().split(':');
         if (key && val) {
-          acc[key.trim().toLowerCase()] = val.trim();
+          acc[key.trim().toLowerCase().replace('/', '_')] = val.trim();
         }
         return acc;
       }, {});
