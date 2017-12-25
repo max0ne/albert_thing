@@ -5,27 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "phantomjs",
-      "type": "phantomjs",
-      "request": "launch",
-      "file": "${file}",
-      "webRoot": "${workspaceRoot}",
-      "runtimeExecutable": "${workspaceRoot}/phantomjs",
-      "runtimeArgs": [],
-      "scriptArgs": [],
-      "sourceMaps": true
-    },
-    {
       "type": "node",
       "request": "launch",
-      "name": "Alberteer",
-      "program": "${workspaceFolder}/alberteer.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Albertaiko",
-      "program": "${workspaceFolder}/albertaiko.js"
+      "name": "Current File",
+      "program": "${file}"
     }
   ]
 }
