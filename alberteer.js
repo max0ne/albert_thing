@@ -1,4 +1,4 @@
-const debug = require('debug')('alberteer');
+const _debug = require('debug')('alberteer');
 const { browser, page, openBrowser, goto, click, button, closeBrowser, $ } = require('taiko');
 
 /**
@@ -41,9 +41,14 @@ function grabClasses() {
  * @param {string} term `Spring 2018`
  * @param {string} school `Tandon - Grad`
  * @param {string} subject `Computer Science`
+ * @param {function} logger post debug message
  * @return {Promise<any[]>}
  */
-async function search(term, school, subject) {
+async function search(term, school, subject, logger) {
+  const debug = (...params) => {
+    _debug(...params);
+    logger && logger(...params);
+  };
   try {
     await openBrowser();
     debug('open browser');
