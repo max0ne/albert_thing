@@ -42,15 +42,16 @@ function grabClasses() {
  * @param {string} school `Tandon - Grad`
  * @param {string} subject `Computer Science`
  * @param {function} logger post debug message
+ * @param {boolean} headless
  * @return {Promise<any[]>}
  */
-async function search(term, school, subject, logger) {
+async function search(term, school, subject, logger, headless=true) {
   const debug = (...params) => {
     _debug(...params);
     logger && logger(...params);
   };
   try {
-    await openBrowser();
+    await openBrowser({ headless });
     debug('open browser');
     await goto('https://m.albert.nyu.edu/app/catalog/classSearch');
     debug('goto class search');
