@@ -2,7 +2,7 @@
   "name": "albert",
   "version": "0.0.1",
   "description": "",
-  "main": "albert_thing.js",
+  "main": "index.js",
   "dependencies": {
     "debug": "^3.1.0",
     "puppeteer": "^0.13.0",
