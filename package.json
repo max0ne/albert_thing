@@ -1,7 +1,7 @@
 {
-  "name": "albert",
+  "name": "albert_thing",
   "version": "0.0.1",
-  "description": "",
+  "description": "a lib to query classes from NYU Albert",
   "main": "index.js",
   "dependencies": {
     "debug": "^3.1.0",
