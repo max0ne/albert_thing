@@ -1,4 +1,4 @@
-const _debug = require('debug')('alberteer');
+const _debug = require('debug')('albert_thing');
 const { browser, page, openBrowser, goto, click, button, closeBrowser, $ } = require('taiko');
 
 /**
@@ -51,6 +51,7 @@ async function search(term, school, subject, logger, headless=true) {
     logger && logger(...params);
   };
   try {
+    debug('openning browser');
     await openBrowser({ headless });
     debug('open browser');
     await goto('https://m.albert.nyu.edu/app/catalog/classSearch');
