@@ -42,17 +42,17 @@ function grabClasses() {
  * @param {string} school `Tandon - Grad`
  * @param {string} subject `Computer Science`
  * @param {function} logger post debug message
- * @param {boolean} headless
+ * @param {boolean} headful true to show browser - un-headless mode
  * @return {Promise<any[]>}
  */
-async function search(term, school, subject, logger, headless=true) {
+async function search(term, school, subject, logger, headful=false) {
   const debug = (...params) => {
     _debug(...params);
     logger && logger(...params);
   };
   try {
     debug('openning browser');
-    await openBrowser({ headless });
+    await openBrowser({ headless: !headful });
     debug('open browser');
     await goto('https://m.albert.nyu.edu/app/catalog/classSearch');
     debug('goto class search');

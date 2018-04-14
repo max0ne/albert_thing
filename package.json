@@ -5,14 +5,8 @@
   "main": "albert_thing.js",
   "dependencies": {
     "debug": "^3.1.0",
-    "lodash": "^4.17.4",
     "puppeteer": "^0.13.0",
-    "taiko": "0.0.9",
-    "yargs": "^11.0.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node albert_thing.js"
+    "taiko": "0.0.9"
   },
   "author": "Mingfei Huang",
   "license": "ISC"
